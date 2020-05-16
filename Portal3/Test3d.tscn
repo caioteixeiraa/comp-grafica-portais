@@ -1,20 +1,38 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
-[sub_resource type="PlaneMesh" id=1]
+[ext_resource path="res://Root.gd" type="Script" id=1]
+[ext_resource path="res://PlayerBody.gd" type="Script" id=2]
 
 [sub_resource type="CubeMesh" id=2]
 
+[sub_resource type="CubeMesh" id=4]
+
+[sub_resource type="CapsuleShape" id=3]
+
 [node name="Root" type="Spatial"]
+script = ExtResource( 1 )
 
-[node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.629497, 1.97562 )
-
-[node name="Plane" type="MeshInstance" parent="."]
-transform = Transform( 5.68321, 0, 0, 0, 1, 0, 0, 0, 4.74277, 0, 0, -1.69905 )
-mesh = SubResource( 1 )
-material/0 = null
-
-[node name="MeshInstance" type="MeshInstance" parent="."]
+[node name="Cube" type="MeshInstance" parent="."]
 transform = Transform( 0.840897, -0.541195, 0, 0.541195, 0.840897, 0, 0, 0, 1, 1.05184, -0.26291, -1.31809 )
 mesh = SubResource( 2 )
 material/0 = null
+
+[node name="Floor" type="MeshInstance" parent="."]
+transform = Transform( 32, 0, 0, 0, 1, 0, 0, 0, 32, 0, -1, 0 )
+mesh = SubResource( 4 )
+material/0 = null
+
+[node name="PlayerBody" type="KinematicBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 4, 0 )
+script = ExtResource( 2 )
+
+[node name="PlayerCollisionShape" type="CollisionShape" parent="PlayerBody"]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, -2, 0, 1, -3.25841e-07, 0, 0, 0 )
+shape = SubResource( 3 )
+
+[node name="PlayerHead" type="Spatial" parent="PlayerBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.6, 0 )
+
+[node name="Camera" type="Camera" parent="PlayerBody/PlayerHead"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0117133, 0, -0.0556727 )
+far = 200.0
