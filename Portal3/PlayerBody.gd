@@ -16,20 +16,27 @@ const FLY_ACCEL = 4
 # walking vars
 var gravity = -9.8 * 3
 const MAX_SPEED = 20
-const MAX_RUNNING_SPEED = 30
+const MAX_RUNNING_SPEED = 50
 const ACCEL = 2
 const DEACCEL = 6
 
 # jumping
-const JUMP_VERTICAL_SPEED = 10
+const JUMP_VERTICAL_SPEED = 20
 
+
+# Boolean value to decide if the player is flying or walking
+var is_flying = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
 
 func _physics_process(delta):
-	walk(delta)
+	if Input.is_action_just_pressed("toggle_flight"):
+		is_flying = !is_flying
+	
+	if (is_flying): fly(delta)
+	else: walk(delta)
 
 
 func walk(delta):
@@ -53,6 +60,7 @@ func walk(delta):
 	
 	velocity.y += gravity * delta
 	var temp_velocity = velocity
+	
 	temp_velocity.y = 0
 	
 	var speed
@@ -79,7 +87,8 @@ func walk(delta):
 	#move
 	velocity = move_and_slide(velocity, Vector3(0, 1, 0))
 	
-	
+	if Input.is_action_just_pressed("jump") && is_on_floor():
+		velocity.y = JUMP_VERTICAL_SPEED
 
 func _input(event):
 	# Camera control input
