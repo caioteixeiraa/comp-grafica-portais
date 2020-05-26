@@ -48,9 +48,9 @@ func walk(delta):
 	
 	# check input then change direction
 	if Input.is_action_pressed("move_forward"):
-		direction -= aim.z
+		direction -= aim.x.rotated(Vector3(0, 1, 0), -PI/2)
 	if Input.is_action_pressed("move_backward"):
-		direction += aim.z
+		direction += aim.x.rotated(Vector3(0, 1, 0), -PI/2)
 	if Input.is_action_pressed("move_left"):
 		direction -= aim.x
 	if Input.is_action_pressed("move_right"):
