@@ -1,7 +1,9 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Root.gd" type="Script" id=1]
 [ext_resource path="res://PlayerBody.gd" type="Script" id=2]
+[ext_resource path="res://PortalPair.gd" type="Script" id=3]
+[ext_resource path="res://PortalA.gd" type="Script" id=4]
 
 [sub_resource type="CubeMesh" id=1]
 
@@ -10,6 +12,9 @@
 [sub_resource type="CubeMesh" id=3]
 
 [sub_resource type="CapsuleShape" id=4]
+
+[sub_resource type="BoxShape" id=6]
+extents = Vector3( 0.216452, 0.22763, 0.296509 )
 
 [sub_resource type="QuadMesh" id=5]
 
@@ -53,11 +58,48 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0117133, 0, -0.0556727 )
 far = 200.0
 
 [node name="PortalPair" type="Node" parent="."]
+script = ExtResource( 3 )
 
-[node name="Portal" type="Spatial" parent="PortalPair"]
+[node name="PortalA" type="Spatial" parent="PortalPair"]
 transform = Transform( 0, 0, 1, 0, 1, 0, -1, 0, 0, -27, 2.25, 20 )
+script = ExtResource( 4 )
 
-[node name="MeshInstance" type="MeshInstance" parent="PortalPair/Portal"]
+[node name="RigidBody" type="RigidBody" parent="PortalPair/PortalA"]
+contact_monitor = true
+axis_lock_linear_x = true
+axis_lock_linear_y = true
+axis_lock_linear_z = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+
+[node name="CollisionShape" type="CollisionShape" parent="PortalPair/PortalA/RigidBody"]
+transform = Transform( 17, 0, 0, 0, 9, 0, 0, 0, 1, 0, 0, 0 )
+shape = SubResource( 6 )
+
+[node name="MeshInstance" type="MeshInstance" parent="PortalPair/PortalA/RigidBody/CollisionShape"]
+transform = Transform( 0.470588, 0, 0, 0, 0.5, 0, 0, 0, 1, 0, 0, 0 )
+mesh = SubResource( 5 )
+material/0 = null
+
+[node name="Viewport" type="Viewport" parent="PortalPair/PortalA/RigidBody/CollisionShape/MeshInstance"]
+size = Vector2( 1024, 512 )
+handle_input_locally = false
+hdr = false
+disable_3d = true
+
+[node name="Camera" type="Camera" parent="PortalPair/PortalA/RigidBody/CollisionShape/MeshInstance/Viewport"]
+transform = Transform( 0.437317, 0.754892, -0.488766, -0.789345, 0.582626, 0.193601, 0.430916, 0.30114, 0.850663, -26.5801, 4.83309, 26.9077 )
+fov = 62.0706
+
+[node name="PortalB" type="Spatial" parent="PortalPair"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.25, -26 )
+
+[node name="MeshInstance" type="MeshInstance" parent="PortalPair/PortalB"]
 transform = Transform( 8, 0, 0, 0, 4.5, 0, 0, 0, 1, 0, 0, 0 )
 mesh = SubResource( 5 )
 material/0 = null
+
+[node name="Viewport" type="Viewport" parent="PortalPair/PortalB"]
+handle_input_locally = false
+render_target_update_mode = 3
