@@ -17,6 +17,7 @@ func _ready():
 	pass # Replace with function body.
 
 func _physics_process(delta):
+	update_camera_position()
 	var collidingBodies = staticBody.get_colliding_bodies()
 	for collidingBody in collidingBodies:
 		if collidingBody is KinematicBody:	
@@ -29,3 +30,28 @@ func shouldTeleport(collidingBody: KinematicBody):
 	# TODO get collidingBody position relative to PortalA position (relativePos = collidingBody.position - parentNode.position)
 	# TODO if it is, set collidingBody position to (PortalB.position + relativePos)
 	pass
+
+func update_camera_position():
+	var currentCameraTransform = get_node("RigidBody/CollisionShape/MeshInstance/Viewport/Camera").global_transform
+	var otherPortalTransform = get_parent().get_node("PortalB").global_transform
+	var thisPortalTransform = self.global_transform
+	var playerTransform = get_tree().root.get_child(0).get_node("PlayerBody").global_transform
+	
+	var newCameraTransform = add_matrices(currentCameraTransform, playerTransform, false)
+	newCameraTransform = add_matrices(newCameraTransform, thisPortalTransform, true)
+	newCameraTransform = add_matrices(newCameraTransform, otherPortalTransform, false)
+	
+	get_node("RigidBody/CollisionShape/MeshInstance/Viewport/Camera").global_transform = newCameraTransform
+	pass	
+	
+	
+func add_matrices(matrixOne: Transform, matrixTwo: Transform, is_subtraction: bool):
+	var result = matrixOne
+	for i in range(2):
+		for j in range(3):
+			if (is_subtraction):
+				result[i][j] = matrixOne[i][j] + matrixTwo[i][j]
+			else:
+				result[i][j] = matrixOne[i][j] + matrixTwo[i][j]	
+	return result
+	
