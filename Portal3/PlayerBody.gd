@@ -34,7 +34,6 @@ func _ready():
 func _physics_process(delta):
 	if Input.is_action_just_pressed("toggle_flight"):
 		is_flying = !is_flying
-	
 	if (is_flying): fly(delta)
 	else: walk(delta)
 
