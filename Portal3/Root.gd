@@ -12,6 +12,7 @@ func _ready():
 	pass # Replace with function body.
 
 func _process(_delta):
+	updateCameras()
 	if(Input.is_action_just_pressed("restart")):
 		get_tree().reload_current_scene()
 	if (Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED):
@@ -24,5 +25,5 @@ func _process(_delta):
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func updateCameras():
+	$tunel2/PortalPair.UpdateCamera($PlayerBody/PlayerHead/Camera)

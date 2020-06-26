@@ -6,6 +6,7 @@ var _exit_portal : Spatial = null
 
 export(float) var teleportationDist = 1.5 #Distance from the portal the player must go through to teleport
 
+var index : int = -1 setget setIndex, getIndex
 
 var _player : Spatial = null
 var _portalShape : CylinderShape = null
@@ -16,6 +17,21 @@ var hasJustTeleported = false
 func _ready():
 	find_player()
 	find_shape()
+
+func setIndex(newValue : int):
+	index = newValue
+	
+	var m : SpatialMaterial = SpatialMaterial.new()
+	m.albedo_color = Color(index/255.0, 0, 0, 1)
+	m.flags_unshaded = true
+	$Plane.set_surface_material(0, m)
+	
+	var layer : int = pow(2, index+1)
+	$Plane.layers = layer
+	
+
+func getIndex():
+	return index
 
 # Find the player
 func find_player():
@@ -43,9 +59,6 @@ func checkTeleportArea():
 #pos: position in this portals local space
 func canTeleport(pos : Vector3):
 	var portalRadius = _portalShape.radius
-	
-	print("pos.y, portalRadius: " + str(pos.y) + ", ", str( portalRadius))
-	
 	return abs(pos.z) < portalRadius \
 		&& abs(_prev_locPlayerPos.x) > teleportationDist \
 		&& abs(_prev_locPlayerPos.x) < 50 * teleportationDist \
