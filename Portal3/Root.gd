@@ -11,7 +11,7 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	pass # Replace with function body.
 
-func _process(delta):
+func _process(_delta):
 	if(Input.is_action_just_pressed("restart")):
 		get_tree().reload_current_scene()
 	if (Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED):
