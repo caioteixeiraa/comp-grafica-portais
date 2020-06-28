@@ -5,15 +5,17 @@ var _portalB : TeleportTestPlane
 var _cameraA : Camera
 var _cameraB : Camera
 
-#export(int) var Portal1_Index
-#export(int) var Portal2_Index
+export(int) var PortalA_Index
+export(int) var PortalB_Index
 
 func _ready():
 	var vp_size : Vector2 = get_viewport().size
 	
+	print(str(get_viewport().size))
+	
 	$PortalA_VP.size = vp_size
 	$PortalB_VP.size = vp_size
-	
+
 	$PortalA_Sprite.region_rect.size = vp_size
 	$PortalB_Sprite.region_rect.size = vp_size
 	
@@ -29,16 +31,17 @@ func findPortals():
 	_cameraA = $PortalA_VP/Camera
 	_cameraB = $PortalB_VP/Camera
 	
-#	_cameraA.cull_mask += pow(2, PortalB_Index+1)
-#	_cameraB.cull_mask += pow(2, PortalA_Index+1)
+	_cameraA.cull_mask += pow(2, PortalB_Index+1)
+	_cameraB.cull_mask += pow(2, PortalA_Index+1)
 	
 	_portalA._exit_portal = _portalB
 	_portalB._exit_portal = _portalA
 	
-#	_portalA.index = PortalA_Index
-#	_portalB.index = PortalB_Index
-
-
+	_portalA.index = PortalA_Index
+	_portalB.index = PortalB_Index
+	print(_portalA.index)
+	print(_portalB.index)
+	
 func UpdateCamera(camera):
 	var position = camera.global_transform.origin
 	var camera_transform = camera.global_transform
