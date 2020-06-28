@@ -5,15 +5,17 @@ var _portalB : TeleportTestPlane
 var _cameraA : Camera
 var _cameraB : Camera
 
-export(int) var PortalA_Index 
+export(int) var PortalA_Index
 export(int) var PortalB_Index
 
 func _ready():
 	var vp_size : Vector2 = get_viewport().size
 	
+	print(str(get_viewport().size))
+	
 	$PortalA_VP.size = vp_size
 	$PortalB_VP.size = vp_size
-	print(vp_size)
+
 	$PortalA_Sprite.region_rect.size = vp_size
 	$PortalB_Sprite.region_rect.size = vp_size
 	

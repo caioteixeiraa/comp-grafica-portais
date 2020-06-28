@@ -27,13 +27,12 @@ render_target_update_mode = 3
 
 [node name="PortalA_Sprite" type="Sprite" parent="."]
 texture = SubResource( 1 )
-offset = Vector2( 512, 300 )
 region_enabled = true
-region_rect = Rect2( 0, 0, 1024, 600 )
+region_rect = Rect2( 0, 0, 10, 10 )
 
 [node name="PortalB_Sprite" type="Sprite" parent="."]
 position = Vector2( -1024, -600 )
 texture = SubResource( 2 )
 offset = Vector2( 512, 300 )
 region_enabled = true
-region_rect = Rect2( 0, 0, 1024, 600 )
+region_rect = Rect2( 0, 0, 10, 10 )
