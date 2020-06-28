@@ -22,7 +22,7 @@ func setIndex(newValue : int):
 	index = newValue
 	
 	var m : SpatialMaterial = SpatialMaterial.new()
-	m.albedo_color = Color(index/255.0, 130, 130, 1)
+	m.albedo_color = Color(index/255.0,0, 0, 1)
 	m.flags_unshaded = false
 	$Plane.set_surface_material(0, m)
 	

@@ -14,7 +14,6 @@ func _ready():
 
 func _process(_delta):
 	updateCameras()
-	processPortals()
 	if(Input.is_action_just_pressed("restart")):
 		get_tree().reload_current_scene()
 	if (Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED):
@@ -30,15 +29,3 @@ func _process(_delta):
 func updateCameras():
 	for node in $PortalPlanes.get_children():
 		node.UpdateCamera($PlayerBody/PlayerHead/Camera)
-
-func processPortals():
-	var count : int = $PortalPlanes/PortalPair.get_child_count()
-	var n = 0
-	for i in range (count):
-		var node = $PortalPlanes/PortalPair.get_child(i)
-		var count_children = node.get_child_count()
-		for j in range (count_children):
-			var child = node.get_child(j)
-			if child is Sprite:
-				n = n + 1
-				
