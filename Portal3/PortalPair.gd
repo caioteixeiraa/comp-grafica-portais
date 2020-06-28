@@ -31,8 +31,8 @@ func UpdateCamera(camera):
 	var portalA_global_transform = _portalA.global_transform
 	var portalB_global_transform = _portalB.global_transform
 	
-	_cameraA.transform.basis = portalB_global_transform.basis  * portalA_global_transform.basis.inverse() * camera_transform.basis
-	_cameraB.transform.basis = portalA_global_transform.basis  * portalB_global_transform.basis.inverse() * camera_transform.basis
-	_cameraA.translation = _portalB.to_global(one_eighty_rotation * planeA_pos)
-	_cameraB.translation = _portalA.to_global(one_eighty_rotation * planeB_pos)
+	_cameraA.transform.basis = portalB_global_transform.basis * portalA_global_transform.basis.inverse()* Basis(one_eighty_rotation) * camera_transform.basis
+	_cameraB.transform.basis = portalA_global_transform.basis * Basis(one_eighty_rotation) * portalB_global_transform.basis.inverse() * camera_transform.basis
+	_cameraA.translation = _portalB.to_global( planeA_pos)
+	_cameraB.translation = _portalA.to_global(planeB_pos)
 
