@@ -12,18 +12,6 @@
 [ext_resource path="res://tower.obj" type="ArrayMesh" id=10]
 [ext_resource path="res://TexturesCom_FloorsRegular0200_1_seamless_S.jpg" type="Texture" id=11]
 
-[sub_resource type="BoxShape" id=14]
-
-[sub_resource type="CubeMesh" id=15]
-
-[sub_resource type="SpatialMaterial" id=16]
-albedo_color = Color( 0.41, 0.34727, 0.1886, 1 )
-normal_enabled = true
-normal_scale = -3.47
-normal_texture = ExtResource( 11 )
-uv1_scale = Vector3( 1, 1, 4 )
-uv1_triplanar = true
-
 [sub_resource type="CapsuleShape" id=1]
 
 [sub_resource type="ConcavePolygonShape" id=2]
@@ -62,6 +50,25 @@ normal_texture = ExtResource( 6 )
 uv1_scale = Vector3( 0.2, 0.2, 0.2 )
 uv1_triplanar = true
 
+[sub_resource type="ViewportTexture" id=14]
+viewport_path = NodePath("PortalPlanes/PortalPair/PortalA/Plane/PortalA_VP")
+
+[sub_resource type="SpatialMaterial" id=15]
+resource_local_to_scene = true
+albedo_texture = SubResource( 14 )
+
+[sub_resource type="SpatialMaterial" id=16]
+albedo_color = Color( 0.41, 0.34727, 0.1886, 1 )
+normal_enabled = true
+normal_scale = -3.47
+normal_texture = ExtResource( 11 )
+uv1_scale = Vector3( 1, 1, 4 )
+uv1_triplanar = true
+
+
+[sub_resource type="ViewportTexture" id=17]
+viewport_path = NodePath("PortalPlanes/PortalPair/PortalB/Plane/PortalB_VP")
+
 [node name="Root" type="Spatial"]
 transform = Transform( 0.86348, 0, 0, 0, 0.86348, 0, 0, 0, 0.86348, 0, 0, 0 )
 script = ExtResource( 1 )
@@ -76,7 +83,7 @@ shape = SubResource( 14 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Node/StaticBody2"]
 mesh = SubResource( 15 )
-material/0 = SubResource( 16 )
+material/0 = SubResource( 17 )
 
 [node name="StaticBody3" type="StaticBody" parent="Node"]
 transform = Transform( 4, 0, 0, 0, 0.001, 0, 0, 0, 4, -8.472, 0, 28.496 )
@@ -86,7 +93,7 @@ shape = SubResource( 14 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Node/StaticBody3"]
 mesh = SubResource( 15 )
-material/0 = SubResource( 16 )
+material/0 = SubResource( 17 )
 
 [node name="StaticBody4" type="StaticBody" parent="Node"]
 transform = Transform( 4, 0, 0, 0, 0.001, 0, 0, 0, 2, -8.472, 0, 34.496 )
@@ -96,7 +103,7 @@ shape = SubResource( 14 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Node/StaticBody4"]
 mesh = SubResource( 15 )
-material/0 = SubResource( 16 )
+material/0 = SubResource( 17 )
 
 [node name="StaticBody5" type="StaticBody" parent="Node"]
 transform = Transform( 4, 0, 0, 0, 0.001, 0, 0, 0, 4, -0.472, 0, 32.496 )
@@ -106,7 +113,7 @@ shape = SubResource( 14 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Node/StaticBody5"]
 mesh = SubResource( 15 )
-material/0 = SubResource( 16 )
+material/0 = SubResource( 17 )
 
 [node name="StaticBody6" type="StaticBody" parent="Node"]
 transform = Transform( 4, 0, 0, 0, 0.001, 0, 0, 0, 4, 7.472, 0, 32.496 )
@@ -116,7 +123,7 @@ shape = SubResource( 14 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Node/StaticBody6"]
 mesh = SubResource( 15 )
-material/0 = SubResource( 16 )
+material/0 = SubResource( 17 )
 
 [node name="StaticBody7" type="StaticBody" parent="Node"]
 transform = Transform( 4, 0, 0, 0, 0.001, 0, 0, 0, 4, 15.472, 0, 32.496 )
@@ -126,7 +133,7 @@ shape = SubResource( 14 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Node/StaticBody7"]
 mesh = SubResource( 15 )
-material/0 = SubResource( 16 )
+material/0 = SubResource( 17 )
 
 [node name="StaticBody8" type="StaticBody" parent="Node"]
 transform = Transform( 4, 0, 0, 0, 0.001, 0, 0, 0, 4, 23.472, 0, 32.496 )
@@ -136,7 +143,7 @@ shape = SubResource( 14 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Node/StaticBody8"]
 mesh = SubResource( 15 )
-material/0 = SubResource( 16 )
+material/0 = SubResource( 17 )
 
 [node name="StaticBody11" type="StaticBody" parent="Node"]
 transform = Transform( 4, 0, 0, 0, 0.001, 0, 0, 0, 22.9, 23.472, 0, 5.56722 )
@@ -146,7 +153,7 @@ shape = SubResource( 14 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Node/StaticBody11"]
 mesh = SubResource( 15 )
-material/0 = SubResource( 16 )
+material/0 = SubResource( 17 )
 
 [node name="StaticBody9" type="StaticBody" parent="Node"]
 transform = Transform( 4, 0, 0, 0, 0.001, 0, 0, 0, 4, -8.89341, 0, -13.4439 )
@@ -157,7 +164,7 @@ shape = SubResource( 14 )
 [node name="MeshInstance" type="MeshInstance" parent="Node/StaticBody9"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 0.975, 0, 0, 0.0234601 )
 mesh = SubResource( 15 )
-material/0 = SubResource( 16 )
+material/0 = SubResource( 17 )
 
 [node name="StaticBody10" type="StaticBody" parent="Node"]
 transform = Transform( 4, 0, 0, 0, 0.001, 0, 0, 0, 2.5, -6.1984, 0, -14.7715 )
@@ -167,7 +174,7 @@ shape = SubResource( 14 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Node/StaticBody10"]
 mesh = SubResource( 15 )
-material/0 = SubResource( 16 )
+material/0 = SubResource( 17 )
 
 [node name="StaticBody12" type="StaticBody" parent="Node"]
 transform = Transform( 4, 0, 0, 0, 0.001, 0, 0, 0, 2.5, 15.5066, 0, -14.7715 )
@@ -177,7 +184,7 @@ shape = SubResource( 14 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Node/StaticBody12"]
 mesh = SubResource( 15 )
-material/0 = SubResource( 16 )
+material/0 = SubResource( 17 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( 0.762603, 0.677551, 0.54824, 0, -0.728473, 0.900296, 0.871575, -0.592838, -0.479694, -7.89514, 50.3109, -53.7029 )
@@ -283,6 +290,7 @@ material/2 = null
 transform = Transform( 3, 0, 0, 0, 3, 0, 0, 0, 3, 18.568, -0.493, 24.525 )
 shape = SubResource( 5 )
 
+
 [node name="Arvore" type="StaticBody" parent="."]
 transform = Transform( 0.977242, 0, -0.212127, 0, 1, 0, 0.212127, 0, 0.977242, 0, -16.6184, -2.5119 )
 
@@ -378,14 +386,25 @@ script = ExtResource( 4 )
 
 [node name="Plane" type="MeshInstance" parent="PortalPlanes/PortalPair/PortalA"]
 transform = Transform( -4.07302e-07, 1, -4.07302e-07, 0, -1.62921e-07, -2.5, -2.5, -1.62921e-07, 6.63579e-14, 0, 0, 0 )
-mesh = SubResource( 12 )
-material/0 = null
+mesh = SubResource( 9 )
+material/0 = SubResource( 15 )
+
+[node name="PortalA_VP" type="Viewport" parent="PortalPlanes/PortalPair/PortalA/Plane"]
+size = Vector2( 1920, 1080 )
+render_target_v_flip = true
+
+[node name="Camera" type="Camera" parent="PortalPlanes/PortalPair/PortalA/Plane/PortalA_VP"]
+current = true
+
+[node name="PortalA_Sprite" type="Sprite" parent="PortalPlanes/PortalPair/PortalA/Plane"]
+texture = SubResource( 16 )
 
 [node name="Area" type="Area" parent="PortalPlanes/PortalPair/PortalA"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 5.55112e-17, 0, 1, 0, 0, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="PortalPlanes/PortalPair/PortalA/Area"]
 transform = Transform( -1.62921e-07, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -1.62921e-07, 7.12149e-15, 0, 0, 0 )
-shape = SubResource( 13 )
+shape = SubResource( 10 )
 
 [node name="PortalB" type="Spatial" parent="PortalPlanes/PortalPair"]
 transform = Transform( -1.62921e-08, 0, 1.9, 0, 1.9, 0, -0.1, 0, -3.09549e-07, -8.5, 2, -8.8 )
@@ -393,14 +412,24 @@ script = ExtResource( 4 )
 
 [node name="Plane" type="MeshInstance" parent="PortalPlanes/PortalPair/PortalB"]
 transform = Transform( -4.07302e-07, 1, -4.07302e-07, 0, -1.62921e-07, -2.5, -2.5, -1.62921e-07, 6.63579e-14, 0, 0, 0 )
-mesh = SubResource( 12 )
-material/0 = null
+mesh = SubResource( 9 )
+material/0 = SubResource( 15 )
+
+[node name="PortalB_VP" type="Viewport" parent="PortalPlanes/PortalPair/PortalB/Plane"]
+size = Vector2( 1920, 1080 )
+render_target_v_flip = true
+
+[node name="Camera" type="Camera" parent="PortalPlanes/PortalPair/PortalB/Plane/PortalB_VP"]
+current = true
+
+[node name="PortalB_Sprite" type="Sprite" parent="PortalPlanes/PortalPair/PortalB/Plane"]
+texture = SubResource( 16 )
 
 [node name="Area" type="Area" parent="PortalPlanes/PortalPair/PortalB"]
 
 [node name="CollisionShape" type="CollisionShape" parent="PortalPlanes/PortalPair/PortalB/Area"]
 transform = Transform( -1.62921e-07, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -1.62921e-07, 7.12149e-15, 0, 0, 0 )
-shape = SubResource( 13 )
+shape = SubResource( 10 )
 
 [node name="Arvore Seca2" type="StaticBody" parent="."]
 transform = Transform( 0.300922, 0, 0.953649, 0, 1, 0, -0.953649, 0, 0.300922, -53.4675, -0.650006, -45.3479 )
